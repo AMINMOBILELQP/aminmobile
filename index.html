@@ -53,12 +53,12 @@ button{font:inherit;color:inherit}
 .slide h2{margin:0;font:800 clamp(22px,4.2vw,44px)/1.05 var(--f-display);letter-spacing:-.5px;text-wrap:balance}
 .slide p{margin:8px 0 14px;font-size:clamp(13px,1.6vw,17px);opacity:.92;max-width:40ch}
 .slide .go{display:inline-block;background:#fff;color:#14201e;border:0;border-radius:999px;padding:9px 18px;font-weight:800;cursor:pointer}
-.slide .art{justify-self:end;width:min(100%,320px);opacity:.95}
+.slide .art{display:none}
 @media (max-width:600px){.slide{grid-template-columns:1fr}.slide .art{position:absolute;right:-20px;bottom:-20px;width:170px;opacity:.25}}
-.s1{background:radial-gradient(120% 140% at 85% 20%,#ff8a3d 0,#d9480f 45%,#7a2408 100%)}
-.s2{background:radial-gradient(120% 140% at 85% 20%,#1fa58f 0,#0f5a50 50%,#06231f 100%)}
-.s3{background:radial-gradient(120% 140% at 85% 20%,#5b6cff 0,#2d3bb8 50%,#121a52 100%)}
-.s4{background:radial-gradient(120% 140% at 85% 20%,#2c2c2c 0,#151515 60%,#000 100%)}
+.s1{background:linear-gradient(90deg,rgba(122,36,8,.92),rgba(217,72,15,.55) 70%),url('https://images.unsplash.com/photo-1776107483944-a4dc59c3fcd3?w=1400&q=70&auto=format&fit=crop') center/cover no-repeat,#222}
+.s2{background:linear-gradient(90deg,rgba(6,35,31,.92),rgba(15,90,80,.5) 70%),url('https://images.unsplash.com/photo-1759588071781-2c3ba9128497?w=1400&q=70&auto=format&fit=crop') center/cover no-repeat,#222}
+.s3{background:linear-gradient(90deg,rgba(18,26,82,.92),rgba(45,59,184,.45) 70%),url('https://images.unsplash.com/photo-1550041473-d296a3a8a18a?w=1400&q=70&auto=format&fit=crop') center/cover no-repeat,#222}
+.s4{background:linear-gradient(90deg,rgba(0,0,0,.9),rgba(20,20,20,.45) 70%),url('https://images.unsplash.com/photo-1746005718004-1f992c399428?w=1400&q=70&auto=format&fit=crop') center/cover no-repeat,#222}
 .dots{position:absolute;left:0;right:0;bottom:12px;display:flex;justify-content:center;gap:8px}
 .dots button{width:9px;height:9px;border-radius:50%;border:0;background:rgba(255,255,255,.45);padding:0;cursor:pointer}
 .dots button.on{background:#fff;width:26px;border-radius:6px}
@@ -90,6 +90,8 @@ h3.sec span{font:600 13px var(--f-body);color:var(--muted)}
 .card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;min-width:0}
 .pic{aspect-ratio:4/3;max-width:100%;display:grid;place-items:center;background:linear-gradient(160deg,var(--surface2),var(--surface));color:var(--price);position:relative}
 .pic svg{width:56px;height:56px}
+.pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pic .ct{z-index:1}
 .pic .ct{position:absolute;left:10px;top:10px;font:700 10.5px var(--f-body);letter-spacing:.6px;text-transform:uppercase;background:var(--surface);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:2px 8px}
 .body{padding:10px 12px 12px;display:flex;flex-direction:column;gap:8px;flex:1}
 .nm{font-weight:800;font-size:13.5px;line-height:1.3;overflow-wrap:anywhere;flex:1}
@@ -195,7 +197,7 @@ footer b{font-family:var(--f-display)}
 <footer><div class="wrap">
   <div><b>Amin Mobile Shop &amp; Repairing Centre</b><br>Rest House Road, Liaquat Pur</div>
   <div>Phone / WhatsApp<br><span class="num">0307-0231599</span></div>
-  <div>Rates dukaan ke system se aate hain aur badal sakte hain. Order ki tasdeeq WhatsApp par hogi.</div>
+  <div>Rates dukaan ke system se aate hain aur badal sakte hain. Order ki tasdeeq WhatsApp par hogi. Photos: Unsplash (sirf pehchan ke liye, asal item mukhtalif ho sakta hai).</div>
 </div></footer>
 
 <div class="veil" id="veil" hidden></div>
@@ -242,6 +244,10 @@ const fmt=n=>'Rs '+n.toLocaleString('en-PK');
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
 const icon=c=>ICON[CICON[c]||'parts'];
+const PH={"BATTERY": "https://images.unsplash.com/photo-1776107483944-a4dc59c3fcd3?w=600&q=70&auto=format&fit=crop", "BODY": "https://images.unsplash.com/photo-1759588071781-2c3ba9128497?w=600&q=70&auto=format&fit=crop", "BACK COVER": "https://images.unsplash.com/photo-1759588071781-2c3ba9128497?w=600&q=70&auto=format&fit=crop", "RING+BACK": "https://images.unsplash.com/photo-1759588071781-2c3ba9128497?w=600&q=70&auto=format&fit=crop", "LCD FRAME": "https://images.unsplash.com/photo-1759588071781-2c3ba9128497?w=600&q=70&auto=format&fit=crop", "OCA+GLASS": "https://images.unsplash.com/photo-1746006084492-24a8fd02710a?w=600&q=70&auto=format&fit=crop", "TOUCH": "https://images.unsplash.com/photo-1746006084492-24a8fd02710a?w=600&q=70&auto=format&fit=crop", "PROTECTOR SHEET": "https://images.unsplash.com/photo-1746006084492-24a8fd02710a?w=600&q=70&auto=format&fit=crop", "OCA PAPER/3D PAPER": "https://images.unsplash.com/photo-1746006084492-24a8fd02710a?w=600&q=70&auto=format&fit=crop", "LCD": "https://images.unsplash.com/photo-1559312379-6eff3ba65888?w=600&q=70&auto=format&fit=crop", "CHARGING FLEX": "https://images.unsplash.com/photo-1653548147626-d3ca2bd24cb6?w=600&q=70&auto=format&fit=crop", "POWER+VOLUME FLEX": "https://images.unsplash.com/photo-1653548147626-d3ca2bd24cb6?w=600&q=70&auto=format&fit=crop", "POWER FLEX": "https://images.unsplash.com/photo-1653548147626-d3ca2bd24cb6?w=600&q=70&auto=format&fit=crop", "VOLUME FLEX": "https://images.unsplash.com/photo-1653548147626-d3ca2bd24cb6?w=600&q=70&auto=format&fit=crop", "MAIN FLEX": "https://images.unsplash.com/photo-1653548147626-d3ca2bd24cb6?w=600&q=70&auto=format&fit=crop", "EARPIECE FLEX": "https://images.unsplash.com/photo-1653548147626-d3ca2bd24cb6?w=600&q=70&auto=format&fit=crop", "SIMTRAY": "https://images.unsplash.com/photo-1562774555-079298a31cbe?w=600&q=70&auto=format&fit=crop", "CAMERA": "https://images.unsplash.com/photo-1759588071781-d69892bd7ca1?w=600&q=70&auto=format&fit=crop", "CAMERA GLASS": "https://images.unsplash.com/photo-1759588071781-d69892bd7ca1?w=600&q=70&auto=format&fit=crop", "SPEAKER NET": "https://images.unsplash.com/photo-1597183739841-5ca26ab0a604?w=600&q=70&auto=format&fit=crop", "RINGER MODULE": "https://images.unsplash.com/photo-1597183739841-5ca26ab0a604?w=600&q=70&auto=format&fit=crop", "EARPIECE": "https://images.unsplash.com/photo-1597183739841-5ca26ab0a604?w=600&q=70&auto=format&fit=crop", "CHARGING BASE": "https://images.unsplash.com/photo-1639675960002-2f414c58ed79?w=600&q=70&auto=format&fit=crop", "JACK": "https://images.unsplash.com/photo-1639675960002-2f414c58ed79?w=600&q=70&auto=format&fit=crop", "IC": "https://images.unsplash.com/photo-1758549885423-819fd86e04f0?w=600&q=70&auto=format&fit=crop", "TOOLS": "https://images.unsplash.com/photo-1746005718004-1f992c399428?w=600&q=70&auto=format&fit=crop", "PARTS": "https://images.unsplash.com/photo-1746005718004-1f992c399428?w=600&q=70&auto=format&fit=crop", "LIQUID CLEANER": "https://images.unsplash.com/photo-1560846389-8c7e1d88eca8?w=600&q=70&auto=format&fit=crop", "BUTTON": "https://images.unsplash.com/photo-1746005718004-1f992c399428?w=600&q=70&auto=format&fit=crop", "WATERPACK SEAL": "https://images.unsplash.com/photo-1746005718004-1f992c399428?w=600&q=70&auto=format&fit=crop", "FINGER/THUMB SENSOR": "https://images.unsplash.com/photo-1746005718004-1f992c399428?w=600&q=70&auto=format&fit=crop", "LIGHT PAPER": "https://images.unsplash.com/photo-1746006084492-24a8fd02710a?w=600&q=70&auto=format&fit=crop", "ACCESSORIES": "https://images.unsplash.com/photo-1603539444875-76e7684265f6?w=600&q=70&auto=format&fit=crop"};
+const PH_EAR='https://images.unsplash.com/photo-1525825691042-e14d9042fc70?w=600&q=70&auto=format&fit=crop', PH_PB='https://images.unsplash.com/photo-1604160687800-f7799a525a33?w=600&q=70&auto=format&fit=crop';
+function photo(c,n){if(c==='ACCESSORIES'){if(/EAR ?BUDS|HAND ?FREE|NECK ?BAND/.test(n))return PH_EAR;if(/POWER ?BANK/.test(n))return PH_PB;}return PH[c]||'';}
+
 let DATA={cats:[],comps:[],rows:[]}, PRICE=new Map();
 let cat=-1, brand='', q='', shown=48;
 let cart={}; try{cart=JSON.parse(localStorage.getItem('am_cart')||'{}')||{}}catch(e){cart={}}
@@ -287,7 +293,7 @@ function render(){
     const c=DATA.cats[r[1]], inC=cart[r[0]];
     const btn=r[3]>0?'<button class="add'+(inC?' in':'')+'" type="button" data-n="'+esc(r[0])+'">'+(inC?'Cart mein ('+inC+')':'+ Cart')+'</button>'
                     :'<button class="add ask" type="button" data-ask="'+esc(r[0])+'">Rate poochein</button>';
-    return '<article class="card"><div class="pic"><span class="ct">'+nice(c)+'</span>'+icon(c)+'</div><div class="body"><div class="nm">'+esc(r[0])+'</div><div class="foot"><span class="price">'+(r[3]>0?fmt(r[3]):'')+'</span>'+btn+'</div></div></article>';
+    return '<article class="card"><div class="pic">'+icon(c)+(photo(c,r[0])?'<img src="'+photo(c,r[0])+'" alt="" loading="lazy" decoding="async" onerror="this.remove()">':'')+'<span class="ct">'+nice(c)+'</span></div><div class="body"><div class="nm">'+esc(r[0])+'</div><div class="foot"><span class="price">'+(r[3]>0?fmt(r[3]):'')+'</span>'+btn+'</div></div></article>';
   }).join('')||'<div class="empty">Is naam se koi cheez stock mein nahi mili. Doosra model ya code likh kar dekhein, ya WhatsApp par poochein.</div>';
   $('moreBox').hidden=res.length<=shown;
 }
