@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Amin Mobile Shop & Repairing Centre, Liaquat Pur: mobile parts, batteries, flex, tools aur accessories ke rates.">
+<title>Amin Mobile Parts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700;800&family=Nunito+Sans:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: counter-style shop catalogue — header strip with shop info, category shelf grid, searchable price list */
+:root{
+  --bg:#f3f5f4; --surface:#ffffff; --ink:#15211f; --muted:#5b6b67; --line:#d9e0dd;
+  --accent:#e0601f; --accent-ink:#ffffff; --deep:#0f3b36; --deep-ink:#e9f3f1; --chip:#e6ecea; --price:#0f3b36;
+  --f-display:"Barlow Semi Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Nunito Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1514; --surface:#16201e; --ink:#e7eeec; --muted:#93a6a1; --line:#2a3734;
+  --accent:#f07a3a; --accent-ink:#1a0d05; --deep:#0b2a27; --deep-ink:#dff0ec; --chip:#22302d; --price:#8fd8c8; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1514; --surface:#16201e; --ink:#e7eeec; --muted:#93a6a1; --line:#2a3734;
+  --accent:#f07a3a; --accent-ink:#1a0d05; --deep:#0b2a27; --deep-ink:#dff0ec; --chip:#22302d; --price:#8fd8c8; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px}
+header.top{background:var(--deep);color:var(--deep-ink)}
+header.top .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;padding-block:18px}
+.brand{display:flex;gap:12px;align-items:center;min-width:0}
+.logo{width:46px;height:46px;border-radius:10px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:22px;flex:none}
+.brand h1{margin:0;font-family:var(--f-display);font-weight:800;font-size:clamp(20px,4vw,28px);letter-spacing:.3px;line-height:1.1;text-wrap:balance}
+.brand p{margin:2px 0 0;opacity:.85;font-size:13px}
+.contact{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:8px;padding:9px 14px;font:700 14px var(--f-body);cursor:pointer;text-decoration:none}
+.btn.wa{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:transparent;color:var(--deep-ink);border:1px solid rgba(255,255,255,.35)}
+.btn:focus-visible,.cat:focus-visible,.chip:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.num{font-family:var(--f-mono);font-weight:700;letter-spacing:.5px}
+.hero{padding-block:22px 6px}
+.hero h2{font-family:var(--f-display);font-size:clamp(24px,5vw,38px);margin:0;line-height:1.05;text-wrap:balance}
+.hero p{margin:6px 0 0;color:var(--muted);max-width:62ch}
+.searchbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px;border-bottom:1px solid var(--line)}
+.searchrow{display:flex;gap:8px;flex-wrap:wrap}
+.searchrow input{flex:1 1 260px;min-width:0;font:600 16px var(--f-body);padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.searchrow select{flex:0 1 200px;min-width:0;font:600 15px var(--f-body);padding:11px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.section-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:22px 0 10px}
+.section-h h3{margin:0;font-family:var(--f-display);font-size:22px;letter-spacing:.2px}
+.section-h span{color:var(--muted);font-size:13px}
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.cat{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:12px;border-radius:12px;background:var(--surface);border:1px solid var(--line);cursor:pointer;color:var(--ink);text-align:left;font:inherit}
+.cat svg{width:44px;height:44px;color:var(--deep);flex:none}
+:root[data-theme="dark"] .cat svg{color:var(--price)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .cat svg{color:var(--price)}}
+.cat b{font-family:var(--f-display);font-size:16px;line-height:1.15;letter-spacing:.3px}
+.cat small{color:var(--muted);font-size:12px}
+.cat[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.chip{border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:999px;padding:5px 11px;font:600 13px var(--f-body);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.item{display:grid;grid-template-columns:52px 1fr;gap:12px;align-items:center;padding:12px;border-radius:12px;background:var(--surface);border:1px solid var(--line);min-width:0}
+.thumb{width:52px;height:52px;border-radius:10px;background:var(--chip);display:grid;place-items:center;color:var(--deep)}
+:root[data-theme="dark"] .thumb{color:var(--price)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .thumb{color:var(--price)}}
+.thumb svg{width:34px;height:34px}
+.item .name{font-weight:700;font-size:14px;line-height:1.3;overflow-wrap:anywhere}
+.item .meta{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:4px;flex-wrap:wrap}
+.item .tag{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.6px}
+.price{font-family:var(--f-mono);font-weight:700;color:var(--price);font-size:15px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.price.ask{color:var(--accent);font-family:var(--f-body);font-size:13px}
+.more{display:flex;justify-content:center;margin:18px 0 8px}
+.more .btn{background:var(--deep);color:var(--deep-ink)}
+.empty{padding:30px;text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:12px}
+footer{margin-top:30px;background:var(--deep);color:var(--deep-ink)}
+footer .wrap{padding-block:20px;display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:space-between;font-size:14px}
+.count{color:var(--muted);font-size:13px;margin:8px 0 0}
+@media (prefers-reduced-motion:no-preference){.cat,.chip,.btn{transition:transform .12s ease,background .12s}.cat:hover{transform:translateY(-2px)}}
+[hidden]{display:none!important}
+body{margin:0}
+</style>
+</head><body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">AM</div>
+      <div>
+        <h1>Amin Mobile Shop &amp; Repairing Centre</h1>
+        <p>Rest House Road, Liaquat Pur &middot; Mobile parts, batteries, flex, tools &amp; accessories</p>
+      </div>
+    </div>
+    <div class="contact">
+      <a class="btn wa" href="https://wa.me/923070231599" target="_blank" rel="noopener">WhatsApp par order</a>
+      <button class="btn ghost" id="copyNum" type="button">Call: <span class="num">0307-0231599</span></button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <h2>Har model ka part, ek jagah</h2>
+    <p>Neeche category chunein ya model ka naam likh kar dhoondein, jaise <b>A3S</b>, <b>BL49FX</b> ya <b>Hot 10</b>. Rate ke liye ya order ke liye WhatsApp karein.</p>
+  </section>
+
+  <div class="searchbar">
+    <div class="searchrow">
+      <input id="q" type="search" placeholder="Model ya part dhoondein (A5S, X6525, BN56…)" autocomplete="off" aria-label="Search">
+      <select id="brand" aria-label="Company"><option value="">Sab companies</option></select>
+    </div>
+    <div class="count" id="count"></div><div class="count" id="updated">Rates load ho rahe hain…</div>
+  </div>
+
+  <div class="section-h"><h3>Categories</h3><span id="catInfo"></span></div>
+  <div class="cats" id="cats"></div>
+
+  <div class="section-h"><h3 id="listTitle">Saare parts</h3><span id="listInfo"></span></div>
+  <div class="list" id="list"></div>
+  <div class="more"><button class="btn" id="more" type="button">Aur dikhayein</button></div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b>Amin Mobile Shop &amp; Repairing Centre</b><br>Rest House Road, Liaquat Pur</div>
+    <div>Phone / WhatsApp: <span class="num">0307-0231599</span><br>Rates dukaan ke system se hain, waqt ke saath badal sakte hain.</div>
+  </div>
+</footer>
+
+<script>
+let DATA = {cats:[],comps:[],rows:[]};
+const ICON = {
+ battery:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><rect x="12" y="8" width="24" height="36" rx="3"/><rect x="19" y="4" width="10" height="4" rx="1"/><path d="M26 16l-6 10h8l-6 10" stroke-linecap="round"/></svg>',
+ phone:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="13" y="4" width="22" height="40" rx="4"/><path d="M21 9h6" stroke-linecap="round"/><circle cx="24" cy="39" r="1.6" fill="currentColor"/></svg>',
+ back:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="13" y="4" width="22" height="40" rx="4"/><rect x="17" y="8" width="8" height="12" rx="3"/><circle cx="21" cy="11.5" r="1.6"/><circle cx="21" cy="16.5" r="1.6"/></svg>',
+ frame:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="12" y="4" width="24" height="40" rx="4"/><rect x="16" y="9" width="16" height="30" rx="1.5" stroke-dasharray="3 2"/></svg>',
+ glass:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="13" y="4" width="22" height="40" rx="4"/><path d="M18 14l8-6M18 22l12-10M22 26l8-6" stroke-linecap="round"/></svg>',
+ flex:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="6" y="6" width="12" height="9" rx="2"/><rect x="30" y="33" width="12" height="9" rx="2"/><path d="M12 15v8c0 4 3 6 7 6h10c4 0 7 2 7 4"/><path d="M15 15v6c0 3 2 5 5 5h9"/></svg>',
+ sim:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M6 18h30l6 6v6H6z"/><rect x="12" y="21" width="8" height="6" rx="1"/><rect x="24" y="21" width="8" height="6" rx="1"/><circle cx="39" cy="27" r="1.4" fill="currentColor"/></svg>',
+ speaker:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="8" y="14" width="32" height="20" rx="4"/><g fill="currentColor" stroke="none"><circle cx="16" cy="21" r="1.6"/><circle cx="22" cy="21" r="1.6"/><circle cx="28" cy="21" r="1.6"/><circle cx="34" cy="21" r="1.6"/><circle cx="16" cy="27" r="1.6"/><circle cx="22" cy="27" r="1.6"/><circle cx="28" cy="27" r="1.6"/><circle cx="34" cy="27" r="1.6"/></g></svg>',
+ camera:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="10" y="10" width="28" height="28" rx="6"/><circle cx="24" cy="24" r="8"/><circle cx="24" cy="24" r="3"/><circle cx="33" cy="15" r="1.4" fill="currentColor"/></svg>',
+ light:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="10" y="8" width="28" height="32" rx="2"/><path d="M15 15h18M15 21h18M15 27h18M15 33h12"/></svg>',
+ lcd:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="8" y="10" width="32" height="22" rx="2"/><path d="M18 32v4M30 32v4M14 38h20" stroke-linecap="round"/><path d="M13 15h10" stroke-linecap="round"/></svg>',
+ base:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><rect x="14" y="18" width="20" height="12" rx="4"/><path d="M19 30v6M29 30v6M24 30v10M20 22h8" stroke-linecap="round"/></svg>',
+ chip:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="13" y="13" width="22" height="22" rx="3"/><rect x="19" y="19" width="10" height="10" rx="1"/><path d="M18 8v5M24 8v5M30 8v5M18 35v5M24 35v5M30 35v5M8 18h5M8 24h5M8 30h5M35 18h5M35 24h5M35 30h5"/></svg>',
+ finger:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M14 30c0-8 4-14 10-14s10 6 10 14"/><path d="M19 34c0-7 2-12 5-12s5 5 5 12"/><path d="M24 28v10"/><path d="M10 24c1-9 7-16 14-16s13 7 14 16"/></svg>',
+ button:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="10" y="16" width="28" height="16" rx="3"/><rect x="18" y="20" width="12" height="8" rx="2"/><path d="M14 32v6M34 32v6" stroke-linecap="round"/></svg>',
+ ear:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="10" y="18" width="28" height="12" rx="6"/><path d="M16 24h16" stroke-linecap="round" stroke-dasharray="2 3"/></svg>',
+ seal:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="12" y="4" width="24" height="40" rx="5"/><rect x="16" y="8" width="16" height="32" rx="3"/><path d="M24 18c-3 4-4 6-4 8a4 4 0 008 0c0-2-1-4-4-8z"/></svg>',
+ parts:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="16" cy="16" r="6"/><path d="M28 10l10 10M33 15l-5 5"/><path d="M12 34l8-8M14 38l-4-4"/><circle cx="34" cy="34" r="5"/></svg>',
+ tools:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M30 8a8 8 0 00-9 11L8 32l4 4 13-13a8 8 0 0011-9l-5 5-4-1-1-4z"/><path d="M28 30l10 10"/></svg>',
+ bottle:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M20 6h8v6l4 6v22a3 3 0 01-3 3H19a3 3 0 01-3-3V18l4-6z"/><path d="M16 26h16"/></svg>',
+ sheet:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="12" y="6" width="24" height="36" rx="3"/><path d="M28 6v8h8" stroke-linejoin="round"/><path d="M17 22l14 12" stroke-linecap="round"/></svg>',
+ acc:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="10" width="16" height="16" rx="3"/><path d="M13 6v4M19 6v4M16 26v6c0 5 4 8 9 8h5"/><rect x="30" y="34" width="10" height="10" rx="2"/></svg>',
+ ringer:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="8" y="16" width="20" height="16" rx="3"/><path d="M33 18c3 2 3 10 0 12M38 14c5 4 5 16 0 20"/></svg>',
+ jack:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="8" y="18" width="32" height="12" rx="2"/><path d="M13 18v-5M18 18v-5M23 18v-5M28 18v-5M33 18v-5" stroke-linecap="round"/></svg>'
+};
+const CICON = {'BATTERY':'battery','OCA+GLASS':'glass','BODY':'phone','BACK COVER':'back','RING+BACK':'back','LCD FRAME':'frame','CHARGING FLEX':'flex','POWER+VOLUME FLEX':'flex','POWER FLEX':'flex','VOLUME FLEX':'flex','MAIN FLEX':'flex','EARPIECE FLEX':'flex','SIMTRAY':'sim','RINGER MODULE':'ringer','SPEAKER NET':'speaker','CAMERA':'camera','CAMERA GLASS':'camera','LIGHT PAPER':'light','TOUCH':'glass','LCD':'lcd','CHARGING BASE':'base','JACK':'jack','IC':'chip','FINGER/THUMB SENSOR':'finger','BUTTON':'button','EARPIECE':'ear','WATERPACK SEAL':'seal','PARTS':'parts','TOOLS':'tools','LIQUID CLEANER':'bottle','OCA PAPER/3D PAPER':'sheet','PROTECTOR SHEET':'sheet','ACCESSORIES':'acc'};
+const CNAME = {'OCA+GLASS':'OCA + Glass','RING+BACK':'Ring + Back','POWER+VOLUME FLEX':'Power + Volume Flex','FINGER/THUMB SENSOR':'Finger Sensor','OCA PAPER/3D PAPER':'OCA / 3D Paper','RINGER MODULE':'Ringer Box'};
+const nice = c => CNAME[c] || c.toLowerCase().replace(/\b\w/g,m=>m.toUpperCase());
+const fmt = n => 'Rs ' + n.toLocaleString('en-PK');
+const $ = id => document.getElementById(id);
+let cat = -1, brand = '', q = '', shown = 60;
+try { const s = localStorage.getItem('am_cat'); if (s !== null) cat = +s; } catch(e) {}
+
+function init(){
+window.counts = DATA.cats.map((c,i)=>DATA.rows.filter(r=>r[1]===i).length);
+$('cats').innerHTML = '<button class="cat" data-i="-1" type="button" aria-pressed="false">'+ICON.parts+'<b>Sab categories</b><small>'+DATA.rows.length.toLocaleString()+' items</small></button>' +
+  DATA.cats.map((c,i)=>'<button class="cat" data-i="'+i+'" type="button" aria-pressed="false">'+ICON[CICON[c]||'parts']+'<b>'+nice(c)+'</b><small>'+counts[i]+' items</small></button>').join('');
+$('catInfo').textContent = DATA.cats.length + ' categories';
+const bsel = $('brand'); bsel.length=1;
+DATA.comps.filter(c=>c!=='ALL').forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;bsel.appendChild(o)}); bsel.value=brand;
+
+}
+function match(){
+  const words = q.toUpperCase().split(/\s+/).filter(Boolean);
+  return DATA.rows.filter(r=>{
+    if (cat>=0 && r[1]!==cat) return false;
+    if (brand && DATA.comps[r[2]]!==brand) return false;
+    if (!words.length) return true;
+    const n = r[0].toUpperCase();
+    return words.every(w=>n.includes(w));
+  });
+}
+function render(){
+  document.querySelectorAll('.cat').forEach(b=>b.setAttribute('aria-pressed', String(+b.dataset.i===cat)));
+  const res = match();
+  $('listTitle').textContent = cat>=0 ? nice(DATA.cats[cat]) : 'Saare parts';
+  $('listInfo').textContent = res.length.toLocaleString() + ' items';
+  $('count').textContent = q || brand ? res.length.toLocaleString()+' cheezein mili' : '';
+  const part = res.slice(0, shown);
+  $('list').innerHTML = part.length ? part.map(r=>{
+    const c = DATA.cats[r[1]];
+    return '<article class="item"><div class="thumb">'+ICON[CICON[c]||'parts']+'</div><div style="min-width:0"><div class="name">'+esc(r[0])+'</div><div class="meta"><span class="tag">'+nice(c)+'</span>'+(r[3]>0?'<span class="price">'+fmt(r[3])+'</span>':'<span class="price ask">Rate poochein</span>')+'</div></div></article>';
+  }).join('') : '<div class="empty">Is naam se koi cheez nahi mili. Doosra model ya code likh kar dekhein, ya WhatsApp par poochein.</div>';
+  $('more').parentElement.hidden = res.length <= shown;
+}
+function esc(s){return s.replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]))}
+$('cats').addEventListener('click',e=>{const b=e.target.closest('.cat');if(!b)return;cat=+b.dataset.i;shown=60;try{localStorage.setItem('am_cat',cat)}catch(e){};render();$('listTitle').scrollIntoView({behavior:'smooth',block:'start'})});
+let t; $('q').addEventListener('input',e=>{clearTimeout(t);t=setTimeout(()=>{q=e.target.value.trim();shown=60;render()},120)});
+$('brand').addEventListener('change',e=>{brand=e.target.value;shown=60;render()});
+$('more').addEventListener('click',()=>{shown+=90;render()});
+$('copyNum').addEventListener('click',()=>{const b=$('copyNum');navigator.clipboard?.writeText('03070231599').then(()=>{b.firstChild.textContent='Number copy ho gaya: '},()=>{}).catch(()=>{})});
+async function load(first){
+  try{
+    const r = await fetch('data.json?t='+Date.now(), {cache:'no-store'});
+    const d = await r.json();
+    const sig = d.rows.length+'|'+d.updated;
+    if (sig === window._sig) return; window._sig = sig;
+    DATA = d; init(); render();
+    const dt = new Date(d.updated);
+    $('updated').textContent = 'Rates aur stock update: ' + dt.toLocaleString('en-PK',{dateStyle:'medium',timeStyle:'short'});
+  }catch(e){ if(first) $('updated').textContent = 'Rates load nahi huay. Internet check kar ke page dobara kholein.'; }
+}
+load(true); setInterval(load, 60000);
+</script>
+
+</body></html>
